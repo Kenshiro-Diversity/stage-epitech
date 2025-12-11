@@ -1,11 +1,191 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stage Epitech 3ème Décembre 2025</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stage de 3ème Epitech - Décembre 2025</title>
+  <style>
+    :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#2563eb; --border:#1f2937; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; background:var(--bg); color:var(--text); }
+
+    /* Header & nav */
+    header { display:flex; align-items:center; gap:1rem; padding:1rem; background:#1e293b; border-bottom:1px solid var(--border); }
+    header img { height:40px; width:auto; }
+    header h1 { font-size:1.25rem; margin:0; }
+    nav { margin-left:auto; }
+    ul.nav { list-style:none; display:flex; gap:.75rem; margin:0; padding:0; }
+    .nav a { display:inline-block; padding:.5rem .75rem; border-radius:.5rem; color:var(--text); text-decoration:none; }
+    .nav a:hover { background: rgba(255,255,255,.08); }
+    .nav a.active { background: var(--accent); color: white; }
+
+    /* Layout */
+    main { max-width:1100px; margin:2rem auto; padding:0 1rem; }
+    .hero { background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(14,165,233,0.1));
+            border: 1px solid rgba(255,255,255,0.12); padding: 1.25rem; border-radius: 1rem; }
+    .hero h2 { margin:0 0 .5rem 0; }
+    section { margin-top:2rem; }
+    section h3 { margin:.25rem 0 1rem; }
+
+    /* Cards */
+    .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:1rem; }
+
+    .card {
+      position: relative;                      /* nécessaire pour le pseudo-élément */
+      display:block; background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:.75rem;
+      overflow:hidden; text-decoration:none; color:inherit;
+      box-shadow: 0 1px 0 rgba(0,0,0,.25);
+      transition: transform .15s ease, border-color .15s ease;
+      text-align: center;     
+      /* Fait que la card prenne la taille de ses enfants + 10 pixels */
+      padding-bottom: 10px;
+      padding-top: 10px;
+      padding-left: 10px;
+        padding-right: 10px;
+
+    }
+
+    /* Bordure intérieure de 5px */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 5px;                              /* crée une marge interne régulière */
+      border: 5px solid rgba(148,163,184,0.35);/* couleur proche de --muted, ajustable */
+      border-radius: calc(.75rem - 5px);       /* suit le rayon sans déborder */
+      pointer-events: none;                    /* ne gêne pas le clic */
+    }
+
+    .card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .card:hover { transform: translateY(-2px); border-color: rgba(37,99,235,.6); }
+
+    .card .thumb { width:100%; aspect-ratio: 16 / 9; background:#0b1220; object-fit:cover; display:block; }
+
+    .card .body {
+      padding:.75rem .9rem;
+      text-align: center;                      /* >>> centrage du texte */
+    }
+    .name { font-weight:600; }
+    .muted { color: var(--muted); font-size:.9rem; }
+    .link {
+      display:block;                           /* pour prendre toute la ligne */
+      margin-top:.35rem;
+      font-size:.9rem;
+      color:#93c5fd;
+      word-break: break-all;                   /* évite débordement d’URL longues */
+    }
+
+    footer { text-align:center; color:#94a3b8; padding:2rem 1rem; }
+  </style>
 </head>
 <body>
-    <h1>Stage Epitech 3ème Décembre 2025</h1>
+  <header>
+    <a href="https://www.epitech.eu/fr/" target="_blank" rel="noopener noreferrer">
+        <img src="epitech_logo_bleu.png" alt="Logo Epitech" />
+    </a>
+    <h1>Stage de 3ème Epitech Nice - Décembre 2025</h1>
+    <nav>
+      <ul class="nav">
+        <li><a href="#nintendor" >Nintendor</a></li>
+        <li><a href="#playstachouffle" >Playstachouffle</a></li>
+        <li><a href="#xboxard" >Xboxard</a></li>
+        <li><a href="#peceairdaigle" >Pécéairdaigle</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Bienvenue !</h2>
+      <p>Vous trouverez ici tous les sites des élèves de 3ème qui ont fait leur stage à Epitech Nice en Décembre 2025.</p>
+    </section>
+
+    <section id="nintendor">
+      <h3>Nintendor</h3>
+      <div class="grid" id="grid-nintendor"></div>
+    </section>
+
+    <section id="playstachouffle">
+      <h3>Playstachouffle</h3>
+      <div class="grid" id="grid-playstachouffle"></div>
+    </section>
+
+    <section id="xboxard">
+      <h3>Xboxard</h3>
+      <div class="grid" id="grid-xboxard"></div>
+    </section>
+
+    <section id="peceairdaigle">
+      <h3>Pécéairdaigle</h3>
+      <div class="grid" id="grid-peceairdaigle"></div>
+    </section>
+  </main>
+
+  <footer>2025 — Stage de 3ème Epitech</footer>
+
+  <script>
+    const data = {
+      nintendor: [
+        { prenom: 'Eros', nom: 'De Andreis', url: ''},
+        { prenom: 'Emmanuel', nom: 'El khoury', url: ''},
+        { prenom: 'Mohamed', nom: 'Fall', url: ''},
+        { prenom: 'Louis', nom: 'Jacoberger Gillet', url: ''},
+        { prenom: 'Soyan', nom: 'Lunes', url: ''},
+        { prenom: 'Youcef', nom: 'Razali', url: 'https://rbelhadj925-bit.github.io/quantumstore/'},
+        { prenom: 'Denylson', nom: 'Russo', url: ''},
+        { prenom: 'Mehdi', nom: 'Souilmi', url: 'https://cheiktapasvolerdupain.github.io/stage-epitech/'},
+        
+      ],
+      playstachouffle: [
+        { prenom: 'Rahim', nom: 'Mohamadi', url: '' },
+        { prenom: 'Amir', nom: 'Goudayev', url: '' },
+        { prenom: 'Soilihi', nom: 'Mloza', url: '' },
+        { prenom: 'Alexandre', nom: 'CIOBAN', url: '' },
+        { prenom: 'Kerim', nom: 'Baguiyev', url: '' },
+        { prenom: 'Zakaria', nom: 'Babou', url: '' },
+
+      ],
+      xboxard: [
+        { prenom: 'Raihan ahmed', nom: 'Mohamed rizwan', url: 'https://raihanesh063.github.io/elegancechaussures/'},
+        { prenom: 'Adam', nom: 'El messari', url: 'https://gfyrhugrge.github.io/vente-/'}, /*https://gfyrhugrge.github.io/dropship.io/*/
+        { prenom: 'Ingrid', nom: 'Popescu', url: 'https://ingide.github.io/stage-epitech/'},
+        { prenom: 'Nahel', nom: 'Bessadi', url: ''},
+        { prenom: 'Moukhammed', nom: 'Atroubaev', url: 'https://moukhammed.github.io/Lumipedia/'},
+        { prenom: 'Zahra', nom: 'Ben ammar', url: 'https://zahra21166.github.io/Stage_EPITECH/'},
+        { prenom: 'Harmonie', nom: 'Sollima', url: 'https://harmo2011.github.io/stage.epitech/'},
+      ],
+      peceairdaigle: [
+        { prenom: 'Mahassin', nom: 'Rayan', url: ''},
+        { prenom: 'Alexandre', nom: 'GIACOMINO', url: 'https://alex124101.github.io/stage-epitech/'},
+        { prenom: 'Nareg', nom: 'Agopian', url: 'https://nejteha-commits.github.io/SuperCar/'},
+        { prenom: 'Rana', nom: 'Ben Abdessalem', url: 'https://azukiiiiiii.github.io/stage-epitech/'},
+        { prenom: 'Bilel', nom: 'Bouazza', url: 'https://bilelesh.github.io/EliteCar-Location/'},
+        { prenom: 'Timothé', nom: 'Lavagnini', url: 'https://batman-t.github.io/stage-epitech./'},
+      ]
+    };
+
+    // ===== Rendu des cards dans une grille =====
+    function render(sectionId, players) {
+      const grid = document.getElementById(sectionId);
+      if (!grid) return;
+      grid.innerHTML = players.map(p => {
+        const fullName = `${p.prenom} ${p.nom.toUpperCase()}`;
+        return `
+          <a class="card" href="${p.url}" target="_blank" rel="noopener noreferrer"
+             aria-label="Ouvrir le site de()} <span class="muted">${fullName}</span></div>
+              <span class="link">${p.url}</span>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    render('grid-nintendor', data.nintendor);
+    render('grid-playstachouffle', data.playstachouffle);
+    render('grid-xboxard', data.xboxard);
+    render('grid-peceairdaigle', data.peceairdaigle);
+  </script>
 </body>
 </html>
