@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stage de 3ème Epitech - Décembre 2025</title>
+  <!-- Favicon du site -->
+  <link rel="icon" type="image/png" href="epitech_logo_bleu.png" />
   <style>
     :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#2563eb; --border:#1f2937; }
     * { box-sizing: border-box; }
@@ -32,7 +34,7 @@
     .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:1rem; }
 
     .card {
-      position: relative;                      /* nécessaire pour le pseudo-élément */
+      position: relative;
       display:block; background:var(--panel);
       border:1px solid var(--border);
       border-radius:.75rem;
@@ -41,11 +43,7 @@
       transition: transform .15s ease, border-color .15s ease;
       text-align: center;     
       /* Fait que la card prenne la taille de ses enfants + 10 pixels */
-      padding-bottom: 10px;
-      padding-top: 10px;
-      padding-left: 10px;
-        padding-right: 10px;
-
+      padding: 5%;
     }
 
     /* Bordure intérieure de 5px */
@@ -123,26 +121,24 @@
     </section>
   </main>
 
-  <footer>2025 — Stage de 3ème Epitech</footer>
+  <footer>2025 — Epitech Nice</footer>
 
   <script>
     const data = {
       nintendor: [
         { prenom: 'Eros', nom: 'De Andreis', url: 'https://rosslextra.github.io/stage-epitech./'},
-        { prenom: 'Emmanuel', nom: 'El khoury', url: ''},
         { prenom: 'Mohamed', nom: 'Fall', url: ''},
         { prenom: 'Louis', nom: 'Jacoberger Gillet', url: ''},
-        { prenom: 'Soyan', nom: 'Lunes', url: ''},
+        { prenom: 'Soyan', nom: 'Lunes', url: 'https://ordi06-wq.github.io/STAGE-3E-EPITECH/'},
         { prenom: 'Youcef', nom: 'Razali', url: 'https://rbelhadj925-bit.github.io/quantumstore/'},
         { prenom: 'Denylson', nom: 'Russo', url: ''},
-        { prenom: 'Mehdi', nom: 'Souilmi', url: 'https://cheiktapasvolerdupain.github.io/stage-epitech/'},
-        
+        { prenom: 'Mehdi', nom: 'Souilmi', url: 'https://cheiktapasvolerdupain.github.io/stage-epitech/'},    
       ],
       playstachouffle: [
         { prenom: 'Rahim', nom: 'Mohamadi', url: 'https://rahim0mohamadi7-a11y.github.io/RAHIM/' },
         { prenom: 'Amir', nom: 'Goudayev', url: 'https://am1r-spec.github.io/stage.epitech/' },
         { prenom: 'Soilihi', nom: 'Mloza', url: 'https://u7891487748-coder.github.io/stage.epitech/' },
-        { prenom: 'Alexandre', nom: 'CIOBAN', url: '' },
+        { prenom: 'Alexandre', nom: 'CIOBAN', url: 'https://webbdummy.github.io/IA-Web-Site' },
         { prenom: 'Kerim', nom: 'Baguiyev', url: 'https://beshiev95.github.io/stage-epitech/' },
         { prenom: 'Zakaria', nom: 'Babou', url: '' },
 
@@ -173,10 +169,9 @@
       grid.innerHTML = players.map(p => {
         const fullName = `${p.prenom} ${p.nom.toUpperCase()}`;
         return `
-          <a class="card" href="${p.url}" target="_blank" rel="noopener noreferrer"
-             aria-label="Ouvrir le site de()} <span class="muted">${fullName}</span></div>
+          <a class="card" href="${p.url}" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le site de ${fullName}">
+              <span class="muted">${fullName}</span>
               <span class="link">${p.url}</span>
-            </div>
           </a>
         `;
       }).join('');
